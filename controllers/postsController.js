@@ -77,8 +77,15 @@ function modify(req, res) {
     post.image = req.body.image;
     post.tags = req.body.tags;
 
+    const postInviato = req.body;
+
+    postInviato.title ? post.title = postInviato.title : post.title = post.title;
+    postInviato.content ? post.content = postInviato.content : post.content = post.content;
+    postInviato.image ? post.image = postInviato.image : post.image = post.image;
+    postInviato.tags ? post.tags = postInviato.tags : post.tags = post.tags;
+
     console.log(posts);
-    res.send(post);
+    res.json(post);
 }
 
 function destroy(req, res) {
