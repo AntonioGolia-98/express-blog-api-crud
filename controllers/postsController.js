@@ -1,3 +1,4 @@
+const { post } = require("../router/appRouter");
 const posts = require("./../data/postList");
 
 function index(req, res) {
@@ -26,7 +27,19 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    res.send("creazione nuovo post")
+    const newId = Date.now();
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        imagge: req.body.image,
+        tags: req.body.tags
+    };
+
+    posts.push(newPost);
+    console.log(posts);
+    res.status(200);
+    res.send(newPost);
 
 }
 
