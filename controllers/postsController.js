@@ -44,11 +44,41 @@ function store(req, res) {
 }
 
 function update(req, res) {
-    res.send("modifica del post" + req.params.id)
+    const id = parseInt(req.params.id);
+    const post = posts.find((post) => post.id === id)
+    if (!post) {
+        res.status(404)
+        return req.json({
+            error: "not found",
+            message: "post non trovato"
+        })
+    };
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+
+    console.log(posts);
+    res.send(post);
 }
 
 function modify(req, res) {
-    res.send("modifica paraziale del post" + req.params.id)
+    const id = parseInt(req.params.id);
+    const post = posts.find((post) => post.id === id)
+    if (!post) {
+        res.status(404)
+        return req.json({
+            error: "not found",
+            message: "post non trovato"
+        })
+    };
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+
+    console.log(posts);
+    res.send(post);
 }
 
 function destroy(req, res) {
